@@ -1,0 +1,27 @@
+{
+  "name": "completebackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start" : "node app.js",
+    "dev" : "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dheeraj-2205/backendApi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dheeraj-2205/backendApi/issues"
+  },
+  "homepage": "https://github.com/Dheeraj-2205/backendApi#readme",
+  "dependencies": {
+    "cookieparser": "^0.1.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.2"
+  }
+}
