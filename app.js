@@ -1,33 +1,15 @@
 const express = require ("express");
 const app = express();
-const mongoose = require("mongoose");
+const userRoute = require("./routes/user.js");
+const {config} = require('dotenv') 
 
-mongoose.connect(`mongodb://localhost:27017`,{dbName : "backendApi"}).then(()=>{
-    console.log(`database is connected`);
-}).catch((error)=>{
-    console.log(error);
+config({
+    path : "./database/config.env"
 })
+app.use(express.json());
+app.use("/userApi",userRoute);
 
-const schema = mongoose.Schema({
-    name : String,
-    email : String,
-    password :String
-})
 
-const User = mongoose.model("Users", schema);
 
-app.get("/",(req,res)=>{
-    res.send("<h1>Data is showing</h1>");
-})
 
-app.get("/users/all", async(req,res)=>{
-    const users = await User.find()
-    res.json({
-        success : true,
-        users
-    })
-})
-
-app.listen(3000,()=>{
-    console.log(`server is running in 3000 port`);
-})
+module.exports = app;
