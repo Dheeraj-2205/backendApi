@@ -9,12 +9,21 @@ router.get("/",(req,res)=>{
 })
 
 router.post("/newUser", createUser)
+router.post("/login", loginUSer)
 
 router.get("/all", getAllUser)
 
+
+router.route("/userid/:id").get()
+    
+
+
+
+module.exports = router
+
 // req.params   dynamic route are always last 
 
-router.get("/userId/:id", individual)
+// router.get("/userId/:id", individual)
 
 // req.query
 
@@ -29,5 +38,5 @@ router.get("/userId/:id", individual)
 //     })
 // })
 
-module.exports = router
+
 
