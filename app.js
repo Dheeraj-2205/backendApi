@@ -7,7 +7,7 @@ config({
     path : "./database/config.env"
 })
 app.use(express.json());
-app.use("/userApi",userRoute);
+app.use("/api/v1/",userRoute);
 
 
 

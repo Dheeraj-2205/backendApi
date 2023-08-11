@@ -1,5 +1,4 @@
 const connectDb = require('./database/database.js');
-const express =require('express');
 const app = require("./app.js");
 
 

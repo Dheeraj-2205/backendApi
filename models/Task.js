@@ -18,3 +18,5 @@ const task = mongoose.Schema({
         ref : "User"
     }
 })
+
+const Task = mongoose.model("Task",task);
