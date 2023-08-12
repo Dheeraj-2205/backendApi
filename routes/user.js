@@ -1,4 +1,5 @@
-const { getAllUser,individual, createUser,loginUser } = require("../controller/user.js");
+const { getAllUser,individual, createUser,loginUser, getMyProfile, logout } = require("../controller/user.js");
+const { isAuthenticate } = require("../middleware/auth.js");
 const  User = require("../models/User.js");
 
 const express = require("express");
@@ -9,9 +10,10 @@ router.get("/",(req,res)=>{
 })
 
 router.post("/newUser", createUser);
-router.get("/login", loginUser);
+router.post("/login", loginUser);
 
-router.get("/all", getAllUser);
+router.get("/user", isAuthenticate , getMyProfile);
+router.get("/logout", logout)
 
 
 

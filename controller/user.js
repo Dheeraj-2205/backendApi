@@ -41,9 +41,21 @@ exports.loginUser = async (req, res, next) => {
   cookieCreator(user,res,200,`Welcome back ${user.name}`)
 };
 
-exports.getAllUser = async (req, res) => {};
+exports.logout = async (req, res) => {
+  res.status(200).cookie("token", null , {expire : new Date(Date.now())}).json({
+    message : "logout Successfully",
+    success : true
+  });
+};
 
-exports.getUserDetails = () => {};
+exports.getMyProfile = (req,res) => {
+
+  res.status(200).json({
+    success : true,
+    user :req.user
+  });
+  
+};
 
 // exports.individual = async (req,res)=>{
 
