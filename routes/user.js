@@ -15,6 +15,7 @@ router.post("/login", loginUser);
 router.get("/user", isAuthenticate , getMyProfile);
 router.get("/logout", logout)
 
+module.exports = router
 
 
 // router.route("/userid/:id").get()
@@ -22,7 +23,6 @@ router.get("/logout", logout)
 
 
 
-module.exports = router
 
 // req.params   dynamic route are always last 
 
