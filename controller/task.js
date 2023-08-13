@@ -25,13 +25,20 @@ exports.getmyTask = async (req,res,next) =>{
     })
 }
 
-exports.updateTask = async() =>{
+exports.updateTask = async(req,res,next) =>{
     const {id} = req.params;
 
     const task = await Task.findById(id);
 
-    task.isCreated = !task.isCreated;
-    await task.save();
+    if(!task){
+        return res.status(404).json({
+            success :false,
+            message : "Task is not found"
+        });
+    }else{
+        task.isCreated = !task.isCreated;
+        await task.save();
+    }
 
     res.status(200).json({
         success : true,
@@ -43,7 +50,14 @@ exports.deleteTask = async(req,res,next) =>{
     const {id} = req.params;
     const task = await Task.findById(id);
 
-    await task.remove();
+    if(!task){
+        return res.status(404).json({
+            success :false,
+            message : "Task is not found"
+        });
+    }else{
+        await task.deleteOne();
+    }
 
     res.status(200).json({
         success : true,
