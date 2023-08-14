@@ -35,21 +35,25 @@ exports.getmyTask = async (req,res,next) =>{
 }
 
 exports.updateTask = async(req,res,next) =>{
-    const {id} = req.params;
+    try {
+        const {id} = req.params;
 
-    const task = await Task.findById(id);
-
-    if(!task){
-        return next(new ErrorHandler("Invalid",404))
-    }else{
-        task.isCreated = !task.isCreated;
-        await task.save();
+        const task = await Task.findById(id);
+    
+        if(!task){
+            return next(new ErrorHandler("Invalid",404))
+        }else{
+            task.isCreated = !task.isCreated;
+            await task.save();
+        }
+    
+        res.status(200).json({
+            success : true,
+            message: "Task Updated"
+        })
+    } catch (error) {
+        next(error);
     }
-
-    res.status(200).json({
-        success : true,
-        message: "Task Updated"
-    })
 }
 
 exports.deleteTask = async(req,res,next) =>{
