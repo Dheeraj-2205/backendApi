@@ -23,7 +23,6 @@ exports.createUser = async (req, res) => {
 exports.loginUser = async (req, res, next) => {
   const {email,password} = req.body;
   const user = await User.findOne({email}).select("+password");
-  console.log(email);
   if(!user){
     res.status(404).json({
       success : false,
@@ -42,7 +41,11 @@ exports.loginUser = async (req, res, next) => {
 };
 
 exports.logout = async (req, res) => {
-  res.status(200).cookie("token", null , {expire : new Date(Date.now())}).json({
+  res.status(200).cookie("token", null , {
+    expire : new Date(Date.now()),
+    sameSite : process.env.NODE_ENV === "Development" ? "lax" : "none",
+    secure : process.env.NODE_ENV === "Development" ? false : true
+  }).json({
     message : "logout Successfully",
     success : true
   });

@@ -6,5 +6,5 @@ connectDb();
 
 
 app.listen(process.env.PORT,()=>{
-    console.log(`server is running in 3000 port`);
+    console.log(`server is running in ${process.env.PORT}  and ${process.env.NODE_ENV}port`);
 })

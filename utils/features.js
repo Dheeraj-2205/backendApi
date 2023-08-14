@@ -6,6 +6,8 @@ exports.cookieCreator = async(user,res,status = 200, message) =>{
       .cookie("token", token, {
         httpOnly: true,
         maxAge: 15 * 1000 * 60,
+        sameSite : process.env.NODE_ENV === "Development" ? "lax" : "none",
+        secure : process.env.NODE_ENV === "Development" ? false : true
       })
       .json({
         success: true,
