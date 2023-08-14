@@ -1,4 +1,4 @@
-const { getAllUser,individual, createUser,loginUser, getMyProfile, logout } = require("../controller/user.js");
+const { createUser,loginUser, getMyProfile, logout } = require("../controller/user.js");
 const { isAuthenticate } = require("../middleware/auth.js");
 const  User = require("../models/User.js");
 
